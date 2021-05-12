@@ -4,7 +4,8 @@ import { Provider } from "react-redux";
 import { createBrowserHistory } from "history";
 import { applyMiddleware, createStore } from "redux";
 import { routerMiddleware, ConnectedRouter } from "connected-react-router";
-
+import { setCurrentUser, setToken } from "./login/action"; // new imports
+import { isEmpty } from "../components/utils/Utils"; 
 import rootReducer from "./Reducer";
 
 const Root = ({ children, initialState = {} }) => {
@@ -18,6 +19,13 @@ const Root = ({ children, initialState = {} }) => {
     initialState,
     applyMiddleware(...middleware)
   );
+  if (!isEmpty(localStorage.getItem("token"))) {
+    store.dispatch(setToken(localStorage.getItem("token")));
+  }
+  if (!isEmpty(localStorage.getItem("user"))) {
+    const user = JSON.parse(localStorage.getItem("user"));
+    store.dispatch(setCurrentUser(user, ""));
+  }
 
   return (
     <Provider store={store}>
@@ -25,5 +33,4 @@ const Root = ({ children, initialState = {} }) => {
     </Provider>
   );
 };
-
 export default Root;
