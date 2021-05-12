@@ -8,7 +8,7 @@ import Dashboard from "./components/containers/Dashboard";
 import HookLogin from "./components/Hooked/HookLogin";
 
 import { ToastContainer } from "react-toastify";
-
+import requireAuth from "./components/utils/RequireAuth";
 import axios from "axios";
 axios.defaults.baseURL = "http://127.0.0.1:8000";
 
@@ -22,7 +22,7 @@ class App extends Component {
             <Route path="/signup" component={Signup} />
             <Route path="/login" component={Login} />
             <Route path="/hooklogin" component={HookLogin} />
-            <Route path="/dashboard" component={Dashboard} />
+            <Route path="/dashboard" component={requireAuth(Dashboard)} />
             <Route exact path="/" component={Home} />
           </Switch>
         </Root>
