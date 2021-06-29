@@ -21,6 +21,7 @@ class AddNote extends Component {
       content: this.state.content
     };
     this.props.addNote(note);
+    this.setState({ content : '' });
   };
 
   render() {

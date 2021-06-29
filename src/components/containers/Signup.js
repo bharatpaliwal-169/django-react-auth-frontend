@@ -35,6 +35,7 @@ class Signup extends Component {
     };
     console.log("Sign up "+ userData.email + " "+ userData.username + " " + userData.password);
     this.props.signupNewUser(userData);
+    // history.push("/login")
   };
 
   render() {
@@ -86,10 +87,16 @@ class Signup extends Component {
                 </Form.Control.Feedback>
               </Form.Group>
             </Form>
-            <Button 
-              color="primary"
-              onClick={this.onSignupClick}  
-            >Sign up</Button>
+            
+            <Link to="/login">
+              <Button 
+                  color="primary"
+                  onClick={this.onSignupClick}  
+              >
+                  Sign up
+              </Button>
+            </Link>
+            
             <p className="mt-2">
               Already have account? <Link to="/login">Login</Link>
             </p>

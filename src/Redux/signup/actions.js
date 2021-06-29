@@ -18,7 +18,9 @@ export const signupNewUser = userData => dispatch => {
           userData.username +
           " created successfully. Please login."
       );
+
       dispatch({ type: CREATE_USER_SUCCESS });
+      // return response.json();
     })
     .catch(error => {
       if (error.resposne) {
